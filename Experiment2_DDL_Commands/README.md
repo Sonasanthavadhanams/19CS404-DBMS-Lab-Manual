@@ -105,123 +105,233 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
+
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Employees(
+EmployeeID INTEGER PRIMARY KEY,
+FirstName TEXT NOT NULL,
+LastName TEXT NOT NULL,
+Email TEXT UNIQUE,
+Salary REAL CHECK(Salary>0),
+DepartmentID INTEGER,
+FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
 ```
 
 **Output:**
+<img width="1306" height="275" alt="image" src="https://github.com/user-attachments/assets/90ec326a-6513-43fa-bf59-6c6796c47b17" />
 
-![Output1](output.png)
 
 **Question 2**
 ---
--- Paste Question 2 here
-
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE ProjectAssignments(
+AssignmentID INTEGER PRIMARY KEY,
+EmployeeID INTEGER ,
+ProjectID INTEGER,
+AssignmentDate DATE NOT NULL,
+FOREIGN KEY(employeeID) REFERENCES Employees (EmployeeID),
+FOREIGN KEY(ProjectID) REFERENCES Projects (ProjectID)
+
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1096" height="151" alt="image" src="https://github.com/user-attachments/assets/fb1bbd95-5ac3-4446-bd6e-0ef47916b7ce" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
 
+Write a SQL query to Add a new column named "discount" with the data type DECIMAL(5,2) to the "customer" table.
+
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+
+        
 ```sql
--- Paste your SQL code below for Question 3
+ALTER TABLE customer
+ADD discount DECIMAL(5,2);
 ```
 
 **Output:**
+<img width="1763" height="297" alt="image" src="https://github.com/user-attachments/assets/656540a2-71da-48ef-91b8-c2906a73f267" />
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+Insert all customers from Old_customers into Customers
+
+Table attributes are CustomerID, Name, Address, Email
+
 
 ```sql
--- Paste your SQL code below for Question 4
+INSERT INTO customers(CustomerID, Name, Address, Email)
+SELECT CustomerID, Name, Address, Email
+FROM  Old_customers;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1852" height="355" alt="image" src="https://github.com/user-attachments/assets/85741131-0eaf-4fb2-a14c-ec93da8fdf31" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Insert a record with EmployeeID 001, Name Sarah Parker, Position Manager, Department HR, and Salary 60000 into the Employee table.
+
 
 ```sql
--- Paste your SQL code below for Question 5
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+VALUES(1,'Sarah Parker','Manager','HR',60000);
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1755" height="261" alt="image" src="https://github.com/user-attachments/assets/8c0a20b1-32e6-4dc1-b000-95c3ea6a9e80" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named Reviews with the following columns:
+
+ReviewID as INTEGER
+ProductID as INTEGER
+Rating as REAL
+ReviewText as TEXT
 
 ```sql
--- Paste your SQL code below for Question 6
+
+CREATE TABLE Reviews(
+ReviewID INTEGER,
+ProductID INTEGER,
+Rating REAL,
+ReviewText TEXT
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1742" height="318" alt="image" src="https://github.com/user-attachments/assets/b57ed4b6-0966-44b2-bdc3-a82a9b2f3f11" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Insert the following students into the Student_details table:
+RollNo      Name        Gender      Subject     MARKS
+----------  ----------  ----------  ----------  ----------
+202            Ella King         F           Chemistry   87
+203            James Bond   M          Literature    78
+
+ 
 
 ```sql
--- Paste your SQL code below for Question 7
+
+INSERT INTO  Student_details(RollNo,Name,Gender,Subject, MARKS)
+VALUES
+(202,'Ella King','F','Chemistry',87),
+(203,'James Bond','M','Literature',78);
+
 ```
 
 **Output:**
+<img width="1329" height="214" alt="image" src="https://github.com/user-attachments/assets/9330d49f-e4df-46e7-9f62-4ca77faf34d6" />
 
-![Output7](output.png)
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
+
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+ 
 
 ```sql
--- Paste your SQL code below for Question 8
+
+ALTER TABLE customer
+ADD birth_date timestamp;
+
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1865" height="294" alt="image" src="https://github.com/user-attachments/assets/cfa4558a-a669-4d5b-9474-e70d4601bef2" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a new table named products with the following specifications:
+product_id as INTEGER and primary key.
+product_name as TEXT and not NULL.
+list_price as DECIMAL (10, 2) and not NULL.
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+A CHECK constraint at the table level to ensure:
+list_price is greater than or equal to discount
+discount is greater than or equal to 0
+list_price is greater than or equal to 0
 
 ```sql
--- Paste your SQL code below for Question 9
+
+CREATE TABLE products(
+product_id INTEGER PRIMARY KEY,
+product_name TEXT NOT NULL,
+list_price DECIMAL(10,2) NOT NULL,
+discount DECIMAL(10,2) NOT NULL DEFAULT 0,
+CHECK (list_price>=discount),
+CHECK (discount>=0),
+CHECK (list_price>=0)
+);
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1895" height="228" alt="image" src="https://github.com/user-attachments/assets/bac162f6-0131-4a21-9460-a7ee5ecd4a02" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Department(
+DepartmentID INTEGER PRIMARY KEY,
+DepartmentName TEXT UNIQUE NOT NULL,
+Location TEXT
+);
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1636" height="142" alt="image" src="https://github.com/user-attachments/assets/a007d8ac-ce38-47ea-b706-4c82bc02a509" />
 
 
 ## RESULT
